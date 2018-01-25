@@ -1,0 +1,27 @@
+# Files
+*.o
+*.a
+*.so
+Makefile
+Makefile.in
+/aclocal.m4
+/config.sub
+/config.guess
+/compile
+/config.h.in
+/configure
+/config.status
+/config.h
+/config.log
+/install-sh
+/stamp-h1
+/missing
+/depcomp
+/libtool
+/ltmain.sh
+
+# Folders
+/m4/
+/autom4te.cache/
+.deps
+/src/cxparser

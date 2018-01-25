@@ -1,0 +1,13 @@
+AC_INIT([cxparser], [0.1])
+
+AM_CONFIG_HEADER(config.h)
+AC_CONFIG_SRCDIR([src/main.cpp])
+AC_CONFIG_MACRO_DIR([m4])
+
+AM_INIT_AUTOMAKE
+
+AC_LANG_CPLUSPLUS
+AC_PROG_CXX
+AM_PROG_LIBTOOL
+
+AC_OUTPUT(Makefile src/Makefile)
