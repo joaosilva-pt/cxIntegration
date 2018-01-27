@@ -20,8 +20,13 @@ using namespace std;
 // Const values
 const string cxIntegration::cxXmlParser::KEY_XML_RESULTS = "CxXMLResults";
 const string cxIntegration::cxXmlParser::KEY_QUERY = "Query";
+const string cxIntegration::cxXmlParser::KEY_QUERY_ID = "<xmlattr>.id";
+const string cxIntegration::cxXmlParser::KEY_QUERY_NAME = "<xmlattr>.name";
+const string cxIntegration::cxXmlParser::KEY_QUERY_RESULTS = "Result";
+const string cxIntegration::cxXmlParser::KEY_RESULT_SEVERITY = "<xmlattr>.Severity";
 
-cxIntegration::cxXmlParser::queryData::queryData(long id, string name) : _id(id), _name(name) { }
+cxIntegration::cxXmlParser::queryData::queryData(long id, string name, long results) :
+_id(id), _name(name), _results(results) { }
 
 cxIntegration::cxXmlParser::cxXmlParser() { }
 
@@ -41,6 +46,51 @@ void cxIntegration::cxXmlParser::parse(std::basic_istream<
 		// Clears current data before parsing
 		_data.clear();
 		boost::property_tree::read_xml(stream, _data);
+
+		// Parse the queries
+		for (auto & query_node : _data.get_child(KEY_XML_RESULTS))
+		{
+			// Processes only if it is a "Query" node
+			if (query_node.first == KEY_QUERY)
+			{
+				_queries.push_back(
+						queryData(query_node.second.get<long>(KEY_QUERY_ID),
+						query_node.second.get<string>(KEY_QUERY_NAME),
+						query_node.second.count(KEY_QUERY_RESULTS)));
+
+						string severity = 
+								query_node.second.get<string>(KEY_RESULT_SEVERITY);
+						if(_severities.find(severity) == _severities.end())
+						{
+							_severities[severity] = 1;
+						}
+						else
+						{
+							_severities[severity]++;
+						}
+				
+//				// Parse the results for the current query
+//				for (auto & result_node : query_node.second.get_child(KEY_QUERY_RESULTS))
+//				{
+//					// Processes only if it is a "Result" node
+//					//if (result_node.first == KEY_QUERY_RESULTS)
+//					cout << "result_node.first=" << result_node.first << endl;
+//					{
+//						string severity = 
+//								result_node.second.get<string>(KEY_RESULT_SEVERITY);
+//						if(_severities.find(severity) == _severities.end())
+//						{
+//							_severities[severity] = 1;
+//						}
+//						else
+//						{
+//							_severities[severity]++;
+//						}
+//					}
+//				}
+			}
+		}
+
 	}
 	catch (const xml_parser::xml_parser_error &ex)
 	{
@@ -83,13 +133,19 @@ void cxIntegration::cxXmlParser::printTree(ptree& theTree, unsigned int nLevel)
 
 vector<cxIntegration::cxXmlParser::queryData> cxIntegration::cxXmlParser::getQueries()
 {
-	vector<cxIntegration::cxXmlParser::queryData> queries;
-	for (auto & node : _data.get_child(KEY_XML_RESULTS))
-	{
-		if (node.first == KEY_QUERY)
-		{
-
-		}
-	}
-	return queries;
+	return _queries;
 }
+
+cxIntegration::cxXmlParser::severities_t cxIntegration::cxXmlParser::getSeverities()
+{
+	return _severities;
+}
+
+unsigned int cxIntegration::cxXmlParser::getTotalResultsWithSeverity(string severity)
+{
+	if(_severities.find(severity) == _severities.end())
+		return 0;
+	
+	return _severities[severity];
+}
+

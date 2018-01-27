@@ -21,11 +21,29 @@ int main(int argc, char** argv)
 	{
 		parser.parse(cin);
 
-		parser.printTree();
+		vector<cxIntegration::cxXmlParser::queryData> allQueries;
+		allQueries = parser.getQueries();
+		
+		for(auto & q : allQueries)
+		{
+			cout << "Query: " 
+					<< q._id << " = " 
+					<< q._name 
+					<< "(" << q._results << ")"
+					<< endl;
+		}
+		
+		cxIntegration::cxXmlParser::severities_t sevs =
+				parser.getSeverities();
+		for(auto & sev : sevs)
+		{
+			cout << sev.first << " = " << sev.second << endl;
+		}
 	}
 	catch (runtime_error &e)
 	{
-		cerr << e.what() << endl;
+		cerr << "Runtime error: " 
+				<< e.what() << endl;
 	}
 
 	return 0;
