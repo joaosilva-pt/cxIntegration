@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 
 		parser.printTree();
 	}
-	catch (exception &e)
+	catch (runtime_error &e)
 	{
 		cerr << e.what() << endl;
 	}
