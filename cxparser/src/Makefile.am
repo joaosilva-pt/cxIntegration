@@ -1,7 +1,8 @@
 noinst_PROGRAMS = cxparser
 
 cxparser_SOURCES = main.cpp \
-    applicationconfig.cpp
+    applicationconfig.cpp \
+    cxxmlparser.cpp
 
 # set the include path found by configure
 cxparser_CPPFLAGS= $(all_includes) --std=c++11
