@@ -36,10 +36,12 @@ function analyzeReport()
 
 function sendSummaryEmail()
 {
+	local readonly MAIL_CONTENT="$1"
+	
 	# Sends email
 	echo "$MAIL_CONTENT" | mail -s "CI summary report" $EMAIL_RECIPIENTS
 }
 
 scanSourceCode
-analyzeReport "$CX_XML_REPORT"
-sendSummaryEmail
+HTML_BODY=analyzeReport "$CX_XML_REPORT"
+sendSummaryEmail "$HTML_BODY"
