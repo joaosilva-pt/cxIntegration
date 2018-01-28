@@ -59,30 +59,20 @@ void cxIntegration::cxXmlParser::parse(std::basic_istream<
 						query_node.second.count(KEY_QUERY_RESULTS));
 				_queries.push_back(
 						newQuery);
-				cout << "new query: " 
-						<< newQuery._name 
-						<< " (" << newQuery._results << ")"
-						<< endl;
 
 				// Parse the results for the current query
-				for (auto & result_node : query_node.second.get_child(KEY_QUERY_RESULTS))
+				for (auto & result_node : query_node.second)
 				{
-					cout << "\t Query " 
-							<< newQuery._name 
-							<< " result: "
-							<< result_node.first
-							<< endl;
-
 					// Processes only if it is a "Result" node
-					if (result_node.first == "<xmlattr>")
+					if (result_node.first == "Result")
 					{
 						cout << "\t Query "
 								<< query_node.second.get<string>(KEY_QUERY_NAME)
 								<< " has a severity "
-								<< result_node.second.get<string>("Severity")
+								<< result_node.second.get<string>("<xmlattr>.Severity")
 								<< endl;
 						string severity =
-								result_node.second.get<string>("Severity");
+								result_node.second.get<string>("<xmlattr>.Severity");
 						if (_severities.find(severity) == _severities.end())
 						{
 							_severities[severity] = 1;
