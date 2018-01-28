@@ -1,4 +1,5 @@
 # Files
+scripts/*.xml
 *.o
 *.a
 *.so
