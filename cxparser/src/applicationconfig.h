@@ -9,37 +9,81 @@
 #ifndef APPLICATIONCONFIG_H
 #define APPLICATIONCONFIG_H
 
-/**
- * @brief Application command line parser and configuration
- * @details Parses command line options
- */
-class ApplicationConfig
+#include <string>
+#include <boost/program_options.hpp>
+
+using namespace std;
+
+namespace cxIntegration
 {
-public:
-	/**
-	 * @brief Default constructor
-	 */
-	ApplicationConfig();
 
 	/**
-	 * @brief Constructor receiving command line args
+	 * @brief Application command line parser and configuration
+	 * @details Parses command line options
 	 */
-	ApplicationConfig(int argc, char** argv);
+	class ApplicationConfig
+	{
+	public:
+		/**
+		 * @brief Default constructor
+		 */
+		ApplicationConfig();
 
-	/**
-	 * @brief Copy constructor
-	 * 
-	 * @param orig The original config
-	 */
-	ApplicationConfig(const ApplicationConfig& orig);
+		/**
+		 * @brief Parses the command line options
+		 */
+		void parse(int argc, char** argv);
 
-	/**
-	 * @brief Destructor
-	 */
-	virtual ~ApplicationConfig();
-private:
+		/**
+		 * @brief Copy constructor
+		 * 
+		 * @param orig The original config
+		 */
+		ApplicationConfig(const ApplicationConfig& orig);
 
-};
+		/**
+		 * @brief Destructor
+		 */
+		virtual ~ApplicationConfig();
 
+		string version() const;
+
+        string outputFile() const
+        {
+        	return _sOutputFile;
+        }
+
+        string inputFile() const
+        {
+        	return _sInputFile;
+        }
+
+        std::string helpText() const
+        {
+        	return _sHelpText;
+        }
+
+        bool hasVersion() const
+        {
+        	return _bHasVersion;
+        }
+
+        bool hasHelp() const
+        {
+        	return _bHasHelp;
+        }
+	private:
+
+		bool _bHasHelp;
+		bool _bHasVersion;
+
+		std::string _sHelpText;
+
+		string _sInputFile;
+		string _sOutputFile;
+		
+		boost::program_options::variables_map _optionsMap;
+	};
+}
 #endif /* APPLICATIONCONFIG_H */
 
