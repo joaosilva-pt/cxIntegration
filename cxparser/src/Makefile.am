@@ -8,4 +8,4 @@ cxparser_SOURCES = main.cpp \
 cxparser_CPPFLAGS= $(all_includes) --std=c++11
 
 # the library search path.
-cxparser_LDFLAGS = $(all_libraries)
+cxparser_LDFLAGS = $(all_libraries) -lboost_program_options
