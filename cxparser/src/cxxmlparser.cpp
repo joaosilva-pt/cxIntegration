@@ -23,6 +23,7 @@ const string cxIntegration::cxXmlParser::KEY_QUERY = "Query";
 const string cxIntegration::cxXmlParser::KEY_QUERY_ID = "<xmlattr>.id";
 const string cxIntegration::cxXmlParser::KEY_QUERY_NAME = "<xmlattr>.name";
 const string cxIntegration::cxXmlParser::KEY_QUERY_RESULTS = "Result";
+//const string cxIntegration::cxXmlParser::KEY_RESULT_SEVERITY = "Severity";
 const string cxIntegration::cxXmlParser::KEY_RESULT_SEVERITY = "<xmlattr>.Severity";
 
 cxIntegration::cxXmlParser::queryData::queryData(long id, string name, long results) :
@@ -53,14 +54,36 @@ void cxIntegration::cxXmlParser::parse(std::basic_istream<
 			// Processes only if it is a "Query" node
 			if (query_node.first == KEY_QUERY)
 			{
-				_queries.push_back(
-						queryData(query_node.second.get<long>(KEY_QUERY_ID),
+				queryData newQuery(query_node.second.get<long>(KEY_QUERY_ID),
 						query_node.second.get<string>(KEY_QUERY_NAME),
-						query_node.second.count(KEY_QUERY_RESULTS)));
+						query_node.second.count(KEY_QUERY_RESULTS));
+				_queries.push_back(
+						newQuery);
+				cout << "new query: " 
+						<< newQuery._name 
+						<< " (" << newQuery._results << ")"
+						<< endl;
 
-						string severity = 
-								query_node.second.get<string>(KEY_RESULT_SEVERITY);
-						if(_severities.find(severity) == _severities.end())
+				// Parse the results for the current query
+				for (auto & result_node : query_node.second.get_child(KEY_QUERY_RESULTS))
+				{
+					cout << "\t Query " 
+							<< newQuery._name 
+							<< " result: "
+							<< result_node.first
+							<< endl;
+
+					// Processes only if it is a "Result" node
+					if (result_node.first == "<xmlattr>")
+					{
+						cout << "\t Query "
+								<< query_node.second.get<string>(KEY_QUERY_NAME)
+								<< " has a severity "
+								<< result_node.second.get<string>("Severity")
+								<< endl;
+						string severity =
+								result_node.second.get<string>("Severity");
+						if (_severities.find(severity) == _severities.end())
 						{
 							_severities[severity] = 1;
 						}
@@ -68,26 +91,8 @@ void cxIntegration::cxXmlParser::parse(std::basic_istream<
 						{
 							_severities[severity]++;
 						}
-				
-//				// Parse the results for the current query
-//				for (auto & result_node : query_node.second.get_child(KEY_QUERY_RESULTS))
-//				{
-//					// Processes only if it is a "Result" node
-//					//if (result_node.first == KEY_QUERY_RESULTS)
-//					cout << "result_node.first=" << result_node.first << endl;
-//					{
-//						string severity = 
-//								result_node.second.get<string>(KEY_RESULT_SEVERITY);
-//						if(_severities.find(severity) == _severities.end())
-//						{
-//							_severities[severity] = 1;
-//						}
-//						else
-//						{
-//							_severities[severity]++;
-//						}
-//					}
-//				}
+					}
+				}
 			}
 		}
 
@@ -143,9 +148,9 @@ cxIntegration::cxXmlParser::severities_t cxIntegration::cxXmlParser::getSeveriti
 
 unsigned int cxIntegration::cxXmlParser::getTotalResultsWithSeverity(string severity)
 {
-	if(_severities.find(severity) == _severities.end())
+	if (_severities.find(severity) == _severities.end())
 		return 0;
-	
+
 	return _severities[severity];
 }
 

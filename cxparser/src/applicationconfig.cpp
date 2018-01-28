@@ -29,6 +29,8 @@ const char* OPT_OUTPUT_DESC = "Sets output HTML file (default: standard output)"
 namespace po = boost::program_options;
 
 cxIntegration::ApplicationConfig::ApplicationConfig() :
+_bHasHelp(false),
+_bHasVersion(false),
 _sInputFile(""),
 _sOutputFile("") { }
 

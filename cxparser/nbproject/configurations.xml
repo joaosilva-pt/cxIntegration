@@ -4,6 +4,8 @@
     <df root="W:/develop/cxIntegration/cxparser" name="0">
       <df name="src">
         <in>applicationconfig.cpp</in>
+        <in>cxxmlparser.cpp</in>
+        <in>cxxmlparser.h</in>
         <in>main.cpp</in>
       </df>
     </df>
@@ -60,6 +62,16 @@
             flavor2="8">
         <ccTool flags="0">
         </ccTool>
+      </item>
+      <item path="W:/develop/cxIntegration/cxparser/src/cxxmlparser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="W:/develop/cxIntegration/cxparser/src/cxxmlparser.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="W:/develop/cxIntegration/cxparser/src/main.cpp"
             ex="false"

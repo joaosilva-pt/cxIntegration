@@ -6,6 +6,8 @@
  */
 
 #include <iostream>
+#include <fstream>
+#include <boost/filesystem.hpp>
 
 #include "cxxmlparser.h"
 #include "applicationconfig.h"
@@ -44,7 +46,37 @@ int main(int argc, char** argv)
 	cxIntegration::cxXmlParser parser;
 	try
 	{
-		parser.parse(cin);
+		if (!options.inputFile().empty())
+		{
+			boost::filesystem::path theFile(options.inputFile());
+			if (boost::filesystem::exists(theFile) &&
+					boost::filesystem::is_regular_file(theFile))
+			{
+				ifstream inputFile(options.inputFile());
+				if (inputFile)
+				{
+					parser.parse(inputFile);
+				}
+				else
+				{
+					cerr << "Unable to read file "
+							<< boost::filesystem::canonical(theFile)
+							<< endl;
+					return EXIT_FAILURE;
+				}
+			}
+			else
+			{
+				cerr << "Unable to locate file "
+						<< boost::filesystem::canonical(theFile)
+						<< endl;
+				return EXIT_FAILURE;
+			}
+		}
+		else
+		{
+			parser.parse(cin);
+		}
 
 		vector<cxIntegration::cxXmlParser::queryData> allQueries;
 		allQueries = parser.getQueries();
