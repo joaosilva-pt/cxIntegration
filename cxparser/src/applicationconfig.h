@@ -72,15 +72,35 @@ namespace cxIntegration
         {
         	return _bHasHelp;
         }
+
+        string mailTemplate() const
+        {
+        	return _sMailTemplate;
+        }
+
+        string severityTemplate() const
+        {
+        	return _sSeverityTemplate;
+        }
+
+        string vulnerabilityTemplate() const
+        {
+        	return _sVulnerabilityTemplate;
+        }
+        
 	private:
 
 		bool _bHasHelp;
 		bool _bHasVersion;
 
-		std::string _sHelpText;
+		string _sHelpText;
 
 		string _sInputFile;
 		string _sOutputFile;
+
+		string _sMailTemplate;
+		string _sVulnerabilityTemplate;
+		string _sSeverityTemplate;
 		
 		boost::program_options::variables_map _optionsMap;
 	};
