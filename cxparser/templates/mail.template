@@ -1,0 +1,7 @@
+<body>
+	<p>A scan was performed with the following results</p>
+	<h3>Severities</h3>
+	%%SEVERITIES_RESULTS%%
+	<h3>Vulnerabilities</h3>
+	%%VULNERABILITIES_RESULTS%%
+</body
