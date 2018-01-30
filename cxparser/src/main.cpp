@@ -78,7 +78,7 @@ int main(int argc, char** argv)
 			parser.parse(cin);
 		}
 
-		vector<cxIntegration::cxXmlParser::queryData> allQueries;
+		cxIntegration::cxXmlParser::queriesData_t allQueries;
 		allQueries = parser.getQueries();
 
 		for (auto & q : allQueries)
