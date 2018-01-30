@@ -14,6 +14,8 @@
 #include <map>
 #include <boost/property_tree/ptree.hpp>
 
+#include "cxdata.h"
+
 using namespace std;
 using namespace boost::property_tree;
 
@@ -24,17 +26,6 @@ namespace cxIntegration
 	class cxXmlParser
 	{
 	public:
-		
-		struct queryData
-		{
-			queryData(long, string, long);
-			long _id;
-			string _name;
-			long _results;
-		};
-
-		typedef vector<queryData> queriesData_t;
-		typedef map<string, unsigned int> severities_t;
 
 		cxXmlParser();
 		cxXmlParser(const cxXmlParser& orig);

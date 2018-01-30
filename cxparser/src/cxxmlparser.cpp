@@ -26,9 +26,6 @@ const string cxIntegration::cxXmlParser::KEY_QUERY_RESULTS = "Result";
 //const string cxIntegration::cxXmlParser::KEY_RESULT_SEVERITY = "Severity";
 const string cxIntegration::cxXmlParser::KEY_RESULT_SEVERITY = "<xmlattr>.Severity";
 
-cxIntegration::cxXmlParser::queryData::queryData(long id, string name, long results) :
-_id(id), _name(name), _results(results) { }
-
 cxIntegration::cxXmlParser::cxXmlParser() { }
 
 cxIntegration::cxXmlParser::cxXmlParser(const cxXmlParser& orig) { }
@@ -126,12 +123,12 @@ void cxIntegration::cxXmlParser::printTree(ptree& theTree, unsigned int nLevel)
 	}
 }
 
-vector<cxIntegration::cxXmlParser::queryData> cxIntegration::cxXmlParser::getQueries()
+vector<cxIntegration::queryData> cxIntegration::cxXmlParser::getQueries()
 {
 	return _queries;
 }
 
-cxIntegration::cxXmlParser::severities_t cxIntegration::cxXmlParser::getSeverities()
+cxIntegration::severities_t cxIntegration::cxXmlParser::getSeverities()
 {
 	return _severities;
 }

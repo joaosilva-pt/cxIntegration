@@ -78,7 +78,7 @@ int main(int argc, char** argv)
 			parser.parse(cin);
 		}
 
-		cxIntegration::cxXmlParser::queriesData_t allQueries;
+		cxIntegration::queriesData_t allQueries;
 		allQueries = parser.getQueries();
 
 		for (auto & q : allQueries)
@@ -90,7 +90,7 @@ int main(int argc, char** argv)
 					<< endl;
 		}
 
-		cxIntegration::cxXmlParser::severities_t sevs =
+		cxIntegration::severities_t sevs =
 				parser.getSeverities();
 		for (auto & sev : sevs)
 		{
