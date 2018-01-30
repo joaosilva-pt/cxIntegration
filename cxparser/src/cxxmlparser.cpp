@@ -32,9 +32,10 @@ cxIntegration::cxXmlParser::cxXmlParser(const cxXmlParser& orig) { }
 
 cxIntegration::cxXmlParser::~cxXmlParser() { }
 
-void cxIntegration::cxXmlParser::parse(std::basic_istream<
+void cxIntegration::cxXmlParser::parse(
+/*std::basic_istream<
 		typename ptree::key_type::value_type
-		>& stream)
+		>*/istream& stream)
 {
 	// don't skip the whitespace while reading
 	stream >> noskipws;

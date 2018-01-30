@@ -31,9 +31,10 @@ namespace cxIntegration
 		cxXmlParser(const cxXmlParser& orig);
 		virtual ~cxXmlParser();
 
-		void parse(std::basic_istream<
+		void parse(
+		/*std::basic_istream<
 				typename ptree::key_type::value_type
-				>&);
+				>*/ istream&);
 
 		void printTree();
 
