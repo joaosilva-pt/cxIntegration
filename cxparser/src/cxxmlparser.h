@@ -39,7 +39,7 @@ namespace cxIntegration
 
 		queriesData_t getQueries();
 		severities_t getSeverities();
-		unsigned int getTotalResultsWithSeverity(string);
+		unsigned int getTotalResultsWithSeverity(string) const;
 		
 	private:
 		ptree _data;

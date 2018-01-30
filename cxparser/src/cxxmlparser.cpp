@@ -133,11 +133,11 @@ cxIntegration::severities_t cxIntegration::cxXmlParser::getSeverities()
 	return _severities;
 }
 
-unsigned int cxIntegration::cxXmlParser::getTotalResultsWithSeverity(string severity)
+unsigned int cxIntegration::cxXmlParser::getTotalResultsWithSeverity(string severity) const
 {
 	if (_severities.find(severity) == _severities.end())
 		return 0;
 
-	return _severities[severity];
+	return _severities.at(severity);
 }
 
