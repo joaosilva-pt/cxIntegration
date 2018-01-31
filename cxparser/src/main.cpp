@@ -9,8 +9,9 @@
 #include <fstream>
 #include <boost/filesystem.hpp>
 
-#include "cxxmlparser.h"
 #include "applicationconfig.h"
+#include "cxxmlparser.h"
+#include "cxmailbodycreator.h"
 
 using namespace std;
 
@@ -78,6 +79,7 @@ int main(int argc, char** argv)
 			parser.parse(cin);
 		}
 
+/*
 		cxIntegration::queriesData_t allQueries;
 		allQueries = parser.getQueries();
 
@@ -96,6 +98,16 @@ int main(int argc, char** argv)
 		{
 			cout << sev.first << " = " << sev.second << endl;
 		}
+*/
+		cxIntegration::queriesData_t allQueries;
+		allQueries = parser.getQueries();
+		cxIntegration::severities_t sevs =
+				parser.getSeverities();
+
+		cxIntegration::cxMailBodyCreator bodyCreator(
+			options.mailTemplate(),
+			options.vulnerabilityTemplate(),
+			options.severityTemplate());
 	}
 	catch (runtime_error &e)
 	{

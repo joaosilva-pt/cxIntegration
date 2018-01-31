@@ -10,7 +10,7 @@
 #define CXMAILBODYCREATOR_H
 
 #include <string>
-#include <sstream>
+#include "cxdata.h"
 
 using namespace std;
 
@@ -26,13 +26,16 @@ namespace cxIntegration
 		cxMailBodyCreator(const cxMailBodyCreator& orig);
 		virtual ~cxMailBodyCreator();
 		
-		ostringstream getBodyMail() const;
+		string getBodyMail(queriesData_t& queries, severities_t& severities) const;
 	private:
 		cxMailBodyCreator();	// Disables default constructor
 		
 		string _sBodyMailTemplate;
 		string _sVulnerabilitiesTemplate;
 		string _sSeveritiesTemplate;
+
+		string expandSeverities(severities_t& severities) const;
+		string expandVulnerabilities(queriesData_t& queries) const;
 	};
 }
 #endif /* CXMAILBODYCREATOR_H */
