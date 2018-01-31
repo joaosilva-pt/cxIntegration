@@ -5,7 +5,7 @@ A custom application was developed using portable C++11 to parse the XML report 
 
 # Script
 ## Configuration
-The script configuration is on the script it self. For easy of use, all configuration settings is at the script's very beginning, in a well defined area.
+The script configuration is in the script it self. For easy of use, all configuration settings is at the script's very beginning, in a well defined area.
 
 The configuration begins with
 
@@ -26,6 +26,8 @@ and goes to where appears the text
 
 # Parsing application
 It is implemented a template-based mail body buyilding system, that allows for both text and HTML emails.
+
+
  
 ## Application dependencies
 
