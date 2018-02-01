@@ -39,6 +39,17 @@ It was tested against boost release 1.62, although it might work with both older
 Please run the application with the --help option to see all available options:
 
     $ ./cxparser --help
+    Available options:
+	  -h [ --help ]                       Prints options usage
+	  -v [ --version ]                    Prints application version
+	  -i [ --input ] arg                  Sets input XML file (default: standard
+	                                      input)
+	  -o [ --output ] arg                 Sets output HTML file (default: standard
+	                                      output)
+	  -m [ --mail-template ] arg          Sets the global mail template to use
+	  -u [ --vulnerability-template ] arg Sets the vulnerability template to use
+	  -s [ --severity-template ] arg      Sets the severity template to use
+
 
 ## Templates
 There are three templates to be considered for the email.
