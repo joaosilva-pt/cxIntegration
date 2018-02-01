@@ -9,7 +9,6 @@
 
 #include "cxxmlparser.h"
 
-#include <iostream>
 #include <stdexcept>
 
 #include <boost/property_tree/xml_parser.hpp>
@@ -23,7 +22,6 @@ const string cxIntegration::cxXmlParser::KEY_QUERY = "Query";
 const string cxIntegration::cxXmlParser::KEY_QUERY_ID = "<xmlattr>.id";
 const string cxIntegration::cxXmlParser::KEY_QUERY_NAME = "<xmlattr>.name";
 const string cxIntegration::cxXmlParser::KEY_QUERY_RESULTS = "Result";
-//const string cxIntegration::cxXmlParser::KEY_RESULT_SEVERITY = "Severity";
 const string cxIntegration::cxXmlParser::KEY_RESULT_SEVERITY = "<xmlattr>.Severity";
 
 cxIntegration::cxXmlParser::cxXmlParser() { }
@@ -33,9 +31,7 @@ cxIntegration::cxXmlParser::cxXmlParser(const cxXmlParser& orig) { }
 cxIntegration::cxXmlParser::~cxXmlParser() { }
 
 void cxIntegration::cxXmlParser::parse(
-/*std::basic_istream<
-		typename ptree::key_type::value_type
-		>*/istream& stream)
+		istream& stream)
 {
 	// don't skip the whitespace while reading
 	stream >> noskipws;
@@ -64,11 +60,6 @@ void cxIntegration::cxXmlParser::parse(
 					// Processes only if it is a "Result" node
 					if (result_node.first == "Result")
 					{
-						cout << "\t Query "
-								<< query_node.second.get<string>(KEY_QUERY_NAME)
-								<< " has a severity "
-								<< result_node.second.get<string>("<xmlattr>.Severity")
-								<< endl;
 						string severity =
 								result_node.second.get<string>("<xmlattr>.Severity");
 						if (_severities.find(severity) == _severities.end())
@@ -94,34 +85,6 @@ void cxIntegration::cxXmlParser::parse(
 		throw runtime_error(oss.str());
 	}
 
-}
-
-void cxIntegration::cxXmlParser::printTree()
-{
-	printTree(_data, 0);
-}
-
-void cxIntegration::cxXmlParser::printTree(ptree& theTree, unsigned int nLevel)
-{
-	for (auto & node : theTree.get_child(""))
-	{
-		ptree subtree = node.second;
-		string nodestr = node.second.get_value<string>();
-		boost::algorithm::trim(nodestr);
-
-		// print current node 
-		cout << string("").assign(nLevel * 2, ' ') << "* ";
-		cout << node.first;
-		if (nodestr.length() > 0)
-		{
-			cout << "=\"" << nodestr << "\"";
-		}
-		cout << endl;
-
-		// recursive go down the hierarchy 
-		printTree(subtree, nLevel + 1);
-
-	}
 }
 
 vector<cxIntegration::queryData> cxIntegration::cxXmlParser::getQueries()

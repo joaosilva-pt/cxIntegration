@@ -22,7 +22,6 @@ using namespace boost::property_tree;
 namespace cxIntegration
 {
 
-	
 	class cxXmlParser
 	{
 	public:
@@ -31,24 +30,17 @@ namespace cxIntegration
 		cxXmlParser(const cxXmlParser& orig);
 		virtual ~cxXmlParser();
 
-		void parse(
-		/*std::basic_istream<
-				typename ptree::key_type::value_type
-				>*/ istream&);
-
-		void printTree();
+		void parse(istream&);
 
 		queriesData_t getQueries();
 		severities_t getSeverities();
 		unsigned int getTotalResultsWithSeverity(string) const;
-		
+
 	private:
 		ptree _data;
 		queriesData_t _queries;
 		severities_t _severities;
 
-		static void printTree(ptree &, unsigned int);
-		
 		static const string KEY_XML_RESULTS;
 		static const string KEY_QUERY;
 		static const string KEY_QUERY_ID;
