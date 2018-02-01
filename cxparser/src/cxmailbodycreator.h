@@ -36,6 +36,17 @@ namespace cxIntegration
 
 		string expandSeverities(severities_t& severities) const;
 		string expandVulnerabilities(queriesData_t& queries) const;
+		
+		// Templates' tags
+		static const string TAG_SEVERITIES_DATA;
+		static const string TAG_VULNERABILITIES_DATA;
+
+		static const string TAG_SEVERITY_NAME;
+		static const string TAG_SEVERITY_OCCURRENCES;
+
+		static const string TAG_VULNERABILITY_NAME;
+		static const string TAG_VULNERABILITY_OCCURRENCES;
+
 	};
 }
 #endif /* CXMAILBODYCREATOR_H */
