@@ -15,6 +15,45 @@
 
 using namespace std;
 
+string getFileContents(const string filename)
+{
+	boost::filesystem::path file(filename);
+	if (boost::filesystem::exists(file) &&
+			boost::filesystem::is_regular_file(file))
+	{
+		try
+		{
+			std::ifstream in(filename, std::ios::in | std::ios::binary);
+			if (in)
+			{
+				std::string contents;
+				in.seekg(0, std::ios::end);
+				contents.resize(in.tellg());
+				in.seekg(0, std::ios::beg);
+				in.read(&contents[0], contents.size());
+				in.close();
+				return contents;
+			}
+		}
+		catch (exception &ex)
+		{
+			ostringstream oss;
+			oss << "Error reading file "
+					<< boost::filesystem::canonical(filename)
+					<< " contents: " << ex.what();
+			throw runtime_error(oss.str());
+		}
+	}
+	else
+	{
+		ostringstream oss;
+		oss << "File "
+				<< boost::filesystem::canonical(filename)
+				<< " does not exist.";
+		throw runtime_error(oss.str());
+	}
+}
+
 /**
  * App entrance point.
  */
@@ -79,35 +118,39 @@ int main(int argc, char** argv)
 			parser.parse(cin);
 		}
 
-/*
+		/*
+				cxIntegration::queriesData_t allQueries;
+				allQueries = parser.getQueries();
+
+				for (auto & q : allQueries)
+				{
+					cout << "Query: "
+							<< q._id << " = "
+							<< q._name
+							<< "(" << q._results << ")"
+							<< endl;
+				}
+
+				cxIntegration::severities_t sevs =
+						parser.getSeverities();
+				for (auto & sev : sevs)
+				{
+					cout << sev.first << " = " << sev.second << endl;
+				}
+		 */
 		cxIntegration::queriesData_t allQueries;
 		allQueries = parser.getQueries();
-
-		for (auto & q : allQueries)
-		{
-			cout << "Query: "
-					<< q._id << " = "
-					<< q._name
-					<< "(" << q._results << ")"
-					<< endl;
-		}
-
 		cxIntegration::severities_t sevs =
 				parser.getSeverities();
-		for (auto & sev : sevs)
-		{
-			cout << sev.first << " = " << sev.second << endl;
-		}
-*/
-		cxIntegration::queriesData_t allQueries;
-		allQueries = parser.getQueries();
-		cxIntegration::severities_t sevs =
-				parser.getSeverities();
+
+
 
 		cxIntegration::cxMailBodyCreator bodyCreator(
-			options.mailTemplate(),
-			options.vulnerabilityTemplate(),
-			options.severityTemplate());
+				getFileContents(options.mailTemplate()),
+				getFileContents(options.vulnerabilityTemplate()),
+				getFileContents(options.severityTemplate()));
+		string body = bodyCreator.getBodyMail(allQueries, sevs);
+		cout << body << endl;
 	}
 	catch (runtime_error &e)
 	{
