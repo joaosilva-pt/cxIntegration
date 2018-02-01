@@ -100,17 +100,17 @@ void cxIntegration::ApplicationConfig::parse(int argc, char** argv)
 
 	if (_optionsMap.count(OPT_MAIL_TEMPLATE_LONG))
 	{
-		_sMailTemplate = _optionsMap[OPT_MAIL_TEMPLATE].as <string>();
+		_sMailTemplate = _optionsMap[OPT_MAIL_TEMPLATE_LONG].as <string>();
 	}
 
 	if (_optionsMap.count(OPT_VULNERABILITY_TEMPLATE_LONG))
 	{
-		_sVulnerabilityTemplate = _optionsMap[OPT_VULNERABILITY_TEMPLATE].as <string>();
+		_sVulnerabilityTemplate = _optionsMap[OPT_VULNERABILITY_TEMPLATE_LONG].as <string>();
 	}
 
 	if (_optionsMap.count(OPT_SEVERITY_TEMPLATE_LONG))
 	{
-		_sSeverityTemplate = _optionsMap[OPT_SEVERITY_TEMPLATE].as <string>();
+		_sSeverityTemplate = _optionsMap[OPT_SEVERITY_TEMPLATE_LONG].as <string>();
 	}
 }
 
