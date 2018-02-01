@@ -9,35 +9,35 @@
 
 #include "applicationconfig.h"
 
-const char* APP_VERSION = "cxparser-0.0.1-build_1";
+const char* cxIntegration::ApplicationConfig::APP_VERSION = "cxparser-0.0.1-build_1";
 
-const char* OPT_HELP = "help,h";
-const char* OPT_VERSION = "version,v";
-const char* OPT_INPUT = "input,i";
-const char* OPT_OUTPUT = "output,o";
-const char* OPT_MAIL_TEMPLATE = "mail-template,m";
-const char* OPT_VULNERABILITY_TEMPLATE = "vulnerability-template,u";
-const char* OPT_SEVERITY_TEMPLATE = "severity-template,s";
+const char* cxIntegration::ApplicationConfig::OPT_HELP = "help,h";
+const char* cxIntegration::ApplicationConfig::OPT_VERSION = "version,v";
+const char* cxIntegration::ApplicationConfig::OPT_INPUT = "input,i";
+const char* cxIntegration::ApplicationConfig::OPT_OUTPUT = "output,o";
+const char* cxIntegration::ApplicationConfig::OPT_MAIL_TEMPLATE = "mail-template,m";
+const char* cxIntegration::ApplicationConfig::OPT_VULNERABILITY_TEMPLATE = "vulnerability-template,u";
+const char* cxIntegration::ApplicationConfig::OPT_SEVERITY_TEMPLATE = "severity-template,s";
 
-const char* OPT_HELP_LONG = "help";
-const char* OPT_VERSION_LONG = "version";
-const char* OPT_INPUT_LONG = "input";
-const char* OPT_OUTPUT_LONG = "output";
-const char* OPT_MAIL_TEMPLATE_LONG = "mail-template";
-const char* OPT_VULNERABILITY_TEMPLATE_LONG = "vulnerability-template";
-const char* OPT_SEVERITY_TEMPLATE_LONG = "severity-template";
+const char* cxIntegration::ApplicationConfig::OPT_HELP_LONG = "help";
+const char* cxIntegration::ApplicationConfig::OPT_VERSION_LONG = "version";
+const char* cxIntegration::ApplicationConfig::OPT_INPUT_LONG = "input";
+const char* cxIntegration::ApplicationConfig::OPT_OUTPUT_LONG = "output";
+const char* cxIntegration::ApplicationConfig::OPT_MAIL_TEMPLATE_LONG = "mail-template";
+const char* cxIntegration::ApplicationConfig::OPT_VULNERABILITY_TEMPLATE_LONG = "vulnerability-template";
+const char* cxIntegration::ApplicationConfig::OPT_SEVERITY_TEMPLATE_LONG = "severity-template";
 
-const char* OPT_HELP_DESC = "Prints options usage";
-const char* OPT_VERSION_DESC = "Prints application version";
-const char* OPT_INPUT_DESC = "Sets input XML file (default: standard input)";
-const char* OPT_OUTPUT_DESC = "Sets output HTML file (default: standard output)";
-const char* OPT_MAIL_TEMPLATE_DESC = "Sets the global mail template to use";
-const char* OPT_VULNERABILITY_TEMPLATE_DESC = "Sets the vulnerability template to use";
-const char* OPT_SEVERITY_TEMPLATE_DESC = "Sets the severity template to use";
+const char* cxIntegration::ApplicationConfig::OPT_HELP_DESC = "Prints options usage";
+const char* cxIntegration::ApplicationConfig::OPT_VERSION_DESC = "Prints application version";
+const char* cxIntegration::ApplicationConfig::OPT_INPUT_DESC = "Sets input XML file (default: standard input)";
+const char* cxIntegration::ApplicationConfig::OPT_OUTPUT_DESC = "Sets output HTML file (default: standard output)";
+const char* cxIntegration::ApplicationConfig::OPT_MAIL_TEMPLATE_DESC = "Sets the global mail template to use";
+const char* cxIntegration::ApplicationConfig::OPT_VULNERABILITY_TEMPLATE_DESC = "Sets the vulnerability template to use";
+const char* cxIntegration::ApplicationConfig::OPT_SEVERITY_TEMPLATE_DESC = "Sets the severity template to use";
 
-const char* DEFAULT_MAIL_TEMPLATE = "mail.template";
-const char* DEFAULT_VULNERABILITY_TEMPLATE = "vulnerability.template";
-const char* DEFAULT_SEVERITY_TEMPLATE = "severity.template";
+const char* cxIntegration::ApplicationConfig::DEFAULT_MAIL_TEMPLATE = "mail.template";
+const char* cxIntegration::ApplicationConfig::DEFAULT_VULNERABILITY_TEMPLATE = "vulnerability.template";
+const char* cxIntegration::ApplicationConfig::DEFAULT_SEVERITY_TEMPLATE = "severity.template";
 
 namespace po = boost::program_options;
 
