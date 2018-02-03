@@ -9,7 +9,7 @@
 
 #include "applicationconfig.h"
 
-const char* cxIntegration::ApplicationConfig::APP_VERSION = "cxparser-0.0.1-build_1";
+const char* cxIntegration::ApplicationConfig::APP_VERSION = "cxparser-1.0.0_1";
 
 const char* cxIntegration::ApplicationConfig::OPT_HELP = "help,h";
 const char* cxIntegration::ApplicationConfig::OPT_VERSION = "version,v";

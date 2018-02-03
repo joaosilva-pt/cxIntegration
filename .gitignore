@@ -25,5 +25,5 @@ cxparser/src/cxparser
 # Folders
 cxparser/m4/
 cxparser/autom4te.cache
-cxparser/nbproject/private
+cxparser/nbproject
 .deps
