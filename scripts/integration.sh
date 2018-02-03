@@ -31,7 +31,7 @@ readonly CX_TEMLATE_SEVERITIES="/home/jsilva/develop/cxIntegration/deploy/severi
 
 function scanSourceCode()
 {
-#	"$CX_CONSOLE" scan -CxServer "$CX_SERVER" -CxUSer "$CX_USER" -CxPassword "$CX_PASSWORD" -LocationType "$CX_LOCATION_TYPE" -LocationURL "$CX_LOCATION_URL" -LocationBranch "$CX_LOCATION_BRANCH" -ProjectName "$CX_PROJECT" -ReportXML "$CX_XML_REPORT"
+	"$CX_CONSOLE" scan -CxServer "$CX_SERVER" -CxUSer "$CX_USER" -CxPassword "$CX_PASSWORD" -LocationType "$CX_LOCATION_TYPE" -LocationURL "$CX_LOCATION_URL" -LocationBranch "$CX_LOCATION_BRANCH" -ProjectName "$CX_PROJECT" -ReportXML "$CX_XML_REPORT"
 	return $?
 }
 
