@@ -10,18 +10,18 @@ readonly GIT_REPO_URL="https://github.com/joaosilva-pt/bricks"
 readonly CX_CONSOLE="$HOME/bin/CxConsolePlugin/runCxConsole.sh"
 
 readonly CX_SERVER="https://cxprivatecloud.checkmarx.net/"
-readonly CX_USER="m.joao.silva.ml@gmail.com"
-readonly CX_PASSWORD="0x12heckM@rx"
+readonly CX_USER=""
+readonly CX_PASSWORD=""
 readonly CX_LOCATION_TYPE="GIT"
 readonly CX_LOCATION_URL="https://github.com/joaosilva-pt/bricks"
 readonly CX_LOCATION_BRANCH="refs/head/master"
 readonly CX_PROJECT="CxServer\\SP\\EMEA\\gmail.com-56\\Bricks"
-readonly CX_XML_REPORT="/home/jsilva/develop/cxIntegration/deploy/report.xml"
+readonly CX_XML_REPORT="report.xml"
 
-readonly CX_PARSER="/home/jsilva/develop/cxIntegration/deploy/cxparser"
-readonly CX_TEMLATE_BODY="/home/jsilva/develop/cxIntegration/deploy/mail.template"
-readonly CX_TEMLATE_VULNERABILITIES="/home/jsilva/develop/cxIntegration/deploy/vulnerability.template"
-readonly CX_TEMLATE_SEVERITIES="/home/jsilva/develop/cxIntegration/deploy/severity.template"
+readonly CX_PARSER="./cxparser"
+readonly CX_TEMLATE_BODY="mail.template"
+readonly CX_TEMLATE_VULNERABILITIES="vulnerability.template"
+readonly CX_TEMLATE_SEVERITIES="severity.template"
 # =================
 # END OF CONFIG
 #
